@@ -3,8 +3,6 @@ defmodule Todo do
     import Supervisor.Spec
 
   def new_calander() do
-    # { :ok, pid } = Supervisor.start_child(Todo.Supervisor, Todo.Server.child_spec([]))
-    # pid
     [{Todo.Server, pid, :worker, [Todo.Server]}| _]= Supervisor.which_children(Todo.Supervisor)
     pid
   end
