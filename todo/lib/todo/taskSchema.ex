@@ -3,18 +3,18 @@ defmodule Todo.TaskSchema do
   import Ecto.Changeset
 
   schema "tasks" do
-    field :Title, :string
-    field :Description, :string
-    field :DueDate, :utc_datetime
-    field :Priority, :integer, default: 0
-    field :Labels, {:array, :string}
+    field :title, :string, default: "new"
+    field :description, :string
+    field :dueDate, :utc_datetime
+    field :priority, :integer, default: 0
+    field :labels, {:array, :string}
 
     timestamps()
   end
 
   def changeset(struct, params) do
   struct
-  |> cast(params, [:Title, :Description, :DueDate, :Priority, :Labels])
-  |> validate_required([:Title])
+  |> cast(params, [:title, :description, :dueDate, :priority, :labels])
+  |> validate_required([:title])
 end
 end

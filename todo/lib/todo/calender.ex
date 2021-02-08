@@ -3,18 +3,18 @@ defmodule Todo.Calender do
   alias Todo.{Calender, Task}
 
   defstruct(
-    Name: "",
-    ToDoList: []
+    name: "",
+    toDoList: []
   )
 
 
-  def new_calender(), do: %Calender{ToDoList: Task.list_tasks}
+  def new_calender(), do: %Calender{toDoList: Task.list_tasks}
 
-  def get_task(%Calender{ToDoList: toDoList}, task_id) do
+  def get_task(%Calender{toDoList: toDoList}, task_id) do
     Enum.find(toDoList, fn %{id: id} -> id == task_id end)
   end
 
-  def update_task(calender = %Calender{ToDoList: toDoList}, task, attrs) do
+  def update_task(calender = %Calender{toDoList: toDoList}, task, attrs) do
     Task.update_task(task, attrs)
     |> update_helper(task, toDoList, calender)
   end
@@ -29,7 +29,7 @@ defmodule Todo.Calender do
   def update_helper({:error, changeset}, _task, toDoList, calender), do:
     reply_formater(toDoList, :error, changeset, calender)
 
-   def delete_task(calender = %Calender{ToDoList: toDoList}, task) do
+   def delete_task(calender = %Calender{toDoList: toDoList}, task) do
      Task.delete_task(task)
      |> delete_helper(task, toDoList, calender)
    end
@@ -45,14 +45,14 @@ defmodule Todo.Calender do
      reply_formater(toDoList, :error, changeset, calender)
 
    def reply_formater(toDoList, reply, task, calender), do:
-    {reply, task, %Calender{ calender | ToDoList: toDoList }}
+    {reply, task, %Calender{ calender | toDoList: toDoList }}
 
-    def create_task(calender = %Calender {ToDoList: toDoList}) do
+    def create_task(calender = %Calender {toDoList: toDoList}) do
       Task.create_task()
       |> create_helper([], toDoList, calender)
     end
 
-  def create_task(calender = %Calender {ToDoList: toDoList}, attrs) do
+  def create_task(calender = %Calender {toDoList: toDoList}, attrs) do
     Task.create_task(attrs)
     |> create_helper(attrs, toDoList, calender)
   end

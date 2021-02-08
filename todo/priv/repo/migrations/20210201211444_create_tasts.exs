@@ -3,11 +3,11 @@ defmodule Todo.Repo.Migrations.CreateTasts do
 
   def change do
     create table(:tasks) do
-      add :Title, :string
-      add :Description, :string
-      add :DueDate, :utc_datetime
-      add :Priority, :integer, default: 0
-      add :Labels, {:array, :string}
+      add :title, :string
+      add :description, :string
+      add :dueDate, :utc_datetime
+      add :priority, :integer, default: 0
+      add :labels, {:array, :string}
 
       timestamps()
     end
