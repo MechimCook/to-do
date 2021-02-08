@@ -39,13 +39,13 @@ defmodule Todo.Server do
   end
 
   def handle_call({ :new, attrs }, _from, calender) do
-    { reply, _added, calender } = Calender.create_task(calender, attrs)
-    { :reply, reply, calender }
+    { reply, added, calender } = Calender.create_task(calender, attrs)
+    { :reply, {reply, added}, calender }
   end
 
   def handle_call({ :new }, _from, calender) do
-    { reply, _added, calender } = Calender.create_task(calender)
-    { :reply, reply, calender }
+    changeset = Todo.Task.change_task(%Todo.TaskSchema{})
+    { :reply, changeset, calender }
   end
 
 end
