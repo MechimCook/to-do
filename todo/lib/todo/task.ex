@@ -13,7 +13,7 @@ defmodule Todo.Task do
 
   def get_task!(id), do: Repo.get!(TaskSchema, id)
 
-  def create_task(attrs \\ %{Title: "new"}) do
+  def create_task(attrs \\ %{}) do
     %TaskSchema{}
     |> TaskSchema.changeset(attrs)
     |> Repo.insert()
@@ -29,4 +29,7 @@ defmodule Todo.Task do
     Repo.delete(task)
   end
 
+  def change_task(%TaskSchema{} = task, attrs \\ %{}) do
+    TaskSchema.changeset(task, attrs)
+  end
 end

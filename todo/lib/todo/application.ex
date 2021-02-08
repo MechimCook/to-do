@@ -10,11 +10,11 @@ defmodule Todo.Application do
 
     children = [
       {Todo.Repo, []},
-      { Todo.Server, []},
+      {Todo.Server, []},
     ]
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :rest_for_one, name: Todo.Supervisor]
+    opts = [strategy: :one_for_all, name: Todo.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
