@@ -1,0 +1,6 @@
+<section class="phx-hero">
+
+</section>
+
+
+<%= Enum.map(@calender.toDoList, fn %{Title: x} -> %> <section class="row"> <%= x %> </section> <%  end)  %>
