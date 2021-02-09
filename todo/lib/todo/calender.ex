@@ -14,7 +14,8 @@ defmodule Todo.Calender do
     Enum.find(toDoList, fn %{id: id} -> id == task_id end)
   end
 
-  def update_task(calender = %Calender{toDoList: toDoList}, task, attrs) do
+  def update_task(calender = %Calender{toDoList: toDoList}, id, attrs) do
+    task = Task.get_task!(id)
     Task.update_task(task, attrs)
     |> update_helper(task, toDoList, calender)
   end
