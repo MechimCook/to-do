@@ -37,7 +37,6 @@ defmodule Todo.Calender do
    def delete_helper({:ok, newTask}, task, toDoList, calender) do
      toDoList
      |> List.delete(task)
-     |> List.insert_at(0, newTask)
      |> reply_formater(:ok, newTask, calender)
    end
 
