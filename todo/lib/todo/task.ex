@@ -16,6 +16,13 @@ defmodule Todo.Task do
     |> Repo.insert()
   end
 
+  def update_task(%TaskSchema{recurring: recurring} = task, %{finished: true} = attrs) when recurring do
+    repeat_task(task)
+    task
+    |> TaskSchema.changeset(attrs)
+    |> Repo.update()
+  end
+
   def update_task(%TaskSchema{} = task, attrs) do
     task
     |> TaskSchema.changeset(attrs)
