@@ -17,17 +17,18 @@ defmodule Todo.Calender do
   def update_task(calender = %Calender{toDoList: toDoList}, id, attrs) do
     task = Task.get_task!(id)
     Task.update_task(task, attrs)
-    |> update_helper(task, toDoList, calender)
+    |> update_helper(id, toDoList, calender)
   end
 
-  def update_helper({:ok, newTask}, task, toDoList, calender) do
+  def update_helper({:ok, newTask}, id, toDoList, calender) do
+    task = Task.get_task!(id)
     toDoList
     |> List.delete(task)
     |> List.insert_at(0, newTask)
     |> reply_formater(:ok, newTask, calender)
   end
 
-  def update_helper({:error, changeset}, _task, toDoList, calender), do:
+  def update_helper({:error, changeset}, _id, toDoList, calender), do:
     reply_formater(toDoList, :error, changeset, calender)
 
    def delete_task(calender = %Calender{toDoList: toDoList}, task) do
