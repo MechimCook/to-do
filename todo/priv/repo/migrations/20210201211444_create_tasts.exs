@@ -8,6 +8,8 @@ defmodule Todo.Repo.Migrations.CreateTasts do
       add :dueDate, :utc_datetime
       add :priority, :integer, default: 0
       add :labels, {:array, :string}
+      add :recurring, :string
+      add :finished, :boolean
 
       timestamps()
     end
