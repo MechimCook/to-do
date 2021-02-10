@@ -30,7 +30,7 @@ defmodule Todo.Task do
     TaskSchema.changeset(task, attrs)
   end
 
-  def repeat_task(%TaskSchema{dueDate: dueDate, recurring: recurring} = task) do
+  def repeat_task(%TaskSchema{recurring: recurring} = task) do
 
     time_added =
       Map.get(@recurring_in_seconds, recurring)
@@ -39,4 +39,5 @@ defmodule Todo.Task do
     |> Map.drop([:updated_at, :inserted_at, :id, :__meta__, :__struct__])
     |> create_task()
   end
+
 end
