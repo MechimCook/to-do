@@ -1,6 +1,5 @@
 defmodule Todo do
 
-    import Supervisor.Spec
 
   def new_calander() do
     [{Todo.Server, pid, :worker, [Todo.Server]}| _]= Supervisor.which_children(Todo.Supervisor)
