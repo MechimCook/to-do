@@ -31,5 +31,8 @@ defmodule Todo do
     GenServer.call(pid, { :new, attrs})
   end
 
+  def repeat(pid, task_id) do
+    GenServer.call(pid, { :repeat, task_id})
+  end
 
 end

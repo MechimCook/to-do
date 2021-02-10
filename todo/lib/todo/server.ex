@@ -48,4 +48,9 @@ defmodule Todo.Server do
     { :reply, changeset, calender }
   end
 
+  def handle_call({ :repeat, task_id }, _from, calender) do
+     calender = Calender.repeat_task(calender, task_id)
+    { :reply, calender, calender }
+  end
+
 end

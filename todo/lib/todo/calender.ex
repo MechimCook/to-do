@@ -66,5 +66,8 @@ defmodule Todo.Calender do
   def create_helper({:error, changeset}, _task, toDoList, calender), do:
     reply_formater(toDoList, :error, changeset, calender)
 
-
+  def repeat_task(calender, id) do
+    get_task(calender, id)
+    |> Task.repeat_task()
+  end
 end
