@@ -53,4 +53,9 @@ defmodule Todo.Server do
     { :reply, calender, calender }
   end
 
+  def handle_call({ :sort, attrs }, _from, calender) do
+     calender = Calender.sort(calender, attrs)
+    { :reply, calender, calender }
+  end
+
 end

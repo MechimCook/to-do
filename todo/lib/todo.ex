@@ -34,4 +34,8 @@ defmodule Todo do
     GenServer.call(pid, { :repeat, task_id})
   end
 
+  def sort(pid, attrs) do
+    GenServer.call(pid, { :sort, attrs })
+  end
+
 end
