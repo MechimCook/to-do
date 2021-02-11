@@ -4,10 +4,35 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+
+  
   <%= label f, :title %>
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
 
+  <%= label f, :description %>
+  <%= text_input f, :description %>
+  <%= error_tag f, :description %>
+
+  <%= label f, :dueDate %>
+  <%= text_input f, :dueDate %>
+  <%= error_tag f, :dueDate %>
+
+  <%= label f, :finished %>
+  <%= text_input f, :finished %>
+  <%= error_tag f, :finished %>
+
+  <%= label f, :labels %>
+  <%= text_input f, :labels %>
+  <%= error_tag f, :labels %>
+
+  <%= label f, :priority %>
+  <%= text_input f, :priority %>
+  <%= error_tag f, :priority %>
+
+  <%= label f, :recurring %>
+  <%= text_input f, :recurring %>
+  <%= error_tag f, :recurring %>
   <div>
     <%= submit "Save" %>
   </div>

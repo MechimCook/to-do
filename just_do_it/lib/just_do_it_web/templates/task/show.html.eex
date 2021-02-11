@@ -6,6 +6,30 @@
     <strong>Title:</strong>
     <%= @task.title %>
   </li>
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+  <li>
+    <strong>DueDate:</strong>
+    <%= @task.dueDate %>
+  </li>
+  <li>
+    <strong>Priority:</strong>
+    <%= @task.title %>
+  </li>
+  <li>
+    <strong>Labels:</strong>
+    <%= @task.labels %>
+  </li>
+  <li>
+    <strong>Recurring:</strong>
+    <%= @task.recurring %>
+  </li>
+  <li>
+    <strong>Finished:</strong>
+    <%= @task.finished %>
+  </li>
 
 </ul>
 

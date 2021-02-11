@@ -42,6 +42,7 @@ defmodule JustDoItWeb.TaskController do
     changeset =
       get_session(conn, :pid)
       |> Todo.new()
+       
     task =
     get_session(conn, :pid)
     |> Todo.get(String.to_integer(id))

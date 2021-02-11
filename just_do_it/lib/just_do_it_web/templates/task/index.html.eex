@@ -3,15 +3,28 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Title</th>
-
+      <th>description</th>
+      <th>dueDate</th>
+      <th>priority</th>
+      <th>labels</th>
+      <th>recurring</th>
+      <th>finished</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for task <- @tasks.toDoList do %>
     <tr>
+      <td><%= task.id %></td>
       <td><%= task.title %></td>
+      <td><%= task.description %></td>
+      <td><%= task.dueDate %></td>
+      <td><%= task.priority %></td>
+      <td><%= task.labels %></td>
+      <td><%= task.recurring %></td>
+      <td><%= task.finished %></td>
 
       <td>
         <span><%= link "Show", to: Routes.task_path(@conn, :show, task) %></span>
