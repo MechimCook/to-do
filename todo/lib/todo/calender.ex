@@ -73,7 +73,9 @@ defmodule Todo.Calender do
     |> Task.repeat_task()
   end
 
-  def sort(calender, %{sort_by: sort_by, order: order}) do
+  def sort(calender, %{"order" => order, "sort_by" => sort_by}) do
+    order = String.to_atom(order)
+    sort_by = String.to_atom(sort_by)
     Map.update(calender, :toDoList, [], fn toDoList ->
       Enum.sort_by(toDoList, &(Map.get(&1, sort_by)), order)
      end)

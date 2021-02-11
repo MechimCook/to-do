@@ -9,6 +9,14 @@ defmodule JustDoItWeb.TaskController do
     conn = put_session(conn, :pid, pid)
     render(conn, "index.html", tasks: tasks)
   end
+  
+  def sorted_index(conn, params) do
+    pid = Todo.new_calander()
+    tasks = Todo.sort(pid, params)
+
+    conn = put_session(conn, :pid, pid)
+    render(conn, "index.html", tasks: tasks)
+  end
 
   def new(conn, _params) do
     changeset =

@@ -1,5 +1,16 @@
 <h1>Listing Tasks</h1>
 
+
+<form>
+<select onchange="location.href='/tasks/sorted' + options[selectedIndex].value">
+<option value="?sort_by=inserted_at&order=asc">created</option>
+<option value="?sort_by=inserted_at&order=desc">created desc</option>
+<option value="?sort_by=dueDate&order=asc">due date</option>
+<option value="?sort_by=dueDate&order=desc">due date desc</option>
+<option value="?sort_by=priority&order=asc">priority</option>
+<option value="?sort_by=priority&order=desc">priority desc</option>
+</select>
+</form>
 <table>
   <thead>
     <tr>

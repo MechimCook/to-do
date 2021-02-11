@@ -15,6 +15,7 @@ defmodule JustDoItWeb.Router do
 
   scope "/", JustDoItWeb do
     pipe_through :browser
+    get "/tasks/sorted", TaskController, :sorted_index
     resources "/tasks", TaskController
     get "/", PageController, :index
   end
