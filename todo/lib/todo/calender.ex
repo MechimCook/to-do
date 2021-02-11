@@ -31,7 +31,8 @@ defmodule Todo.Calender do
   def update_helper({:error, changeset}, _id, toDoList, calender), do:
     reply_formater(toDoList, :error, changeset, calender)
 
-   def delete_task(calender = %Calender{toDoList: toDoList}, task) do
+   def delete_task(calender = %Calender{toDoList: toDoList}, task_id) do
+     task = Task.get_task!(task_id)
      Task.delete_task(task)
      |> delete_helper(task, toDoList, calender)
    end

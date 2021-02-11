@@ -29,8 +29,8 @@ defmodule Todo.Server do
   end
 
   def handle_call({ :delete, task_id }, _from, calender) do
-     calender = Calender.delete_task(calender, task_id)
-    { :reply, calender, calender }
+     { reply, updated_task, calender } = Calender.delete_task(calender, task_id)
+    { :reply, reply, calender }
   end
 
   def handle_call({ :edit, task_id, attrs }, _from, calender) do
@@ -57,5 +57,4 @@ defmodule Todo.Server do
      calender = Calender.sort(calender, attrs)
     { :reply, calender, calender }
   end
-
 end
