@@ -9,7 +9,7 @@ defmodule JustDoItWeb.TaskController do
     conn = put_session(conn, :pid, pid)
     render(conn, "index.html", tasks: tasks)
   end
-  
+
   def sorted_index(conn, params) do
     pid = Todo.new_calander()
     tasks = Todo.sort(pid, params)
@@ -50,17 +50,16 @@ defmodule JustDoItWeb.TaskController do
     changeset =
       get_session(conn, :pid)
       |> Todo.new()
-       
+
     task =
     get_session(conn, :pid)
     |> Todo.get(String.to_integer(id))
     render(conn, "edit.html", task: task, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "task" => task_params}) do
+  def update(conn, %{"id" => id, "task_schema" => task_params}) do
 
     pid = get_session(conn, :pid)
-
     case Todo.edit(pid, id, task_params) do
       {:ok, task} ->
         conn
@@ -72,15 +71,24 @@ defmodule JustDoItWeb.TaskController do
         get_session(conn, :pid)
         |> Todo.get(id)
         render(conn, "edit.html", task: task, changeset: changeset)
+      :ok ->
+        task =
+        get_session(conn, :pid)
+        |> Todo.get(String.to_integer(id))
+        conn
+        |> put_flash(:info, "Task updated successfully.")
+        |> redirect(to: Routes.task_path(conn, :show, task))
     end
   end
 
   def delete(conn, %{"id" => id}) do
     get_session(conn, :pid)
-    |> Todo.delete(id)
+    |> Todo.delete(String.to_integer(id))
 
     conn
     |> put_flash(:info, "Task deleted successfully.")
     |> redirect(to: Routes.task_path(conn, :index))
   end
+
+
 end

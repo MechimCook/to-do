@@ -35,7 +35,10 @@
       <td><%= task.priority %></td>
       <td><%= task.labels %></td>
       <td><%= task.recurring %></td>
-      <td><%= task.finished %></td>
+      <td>
+        <%=
+          link "x", to: Routes.task_path(@conn, :update, task, task_schema: %{finished: true}), class: "btn",method: :put %>
+      </td>
 
       <td>
         <span><%= link "Show", to: Routes.task_path(@conn, :show, task) %></span>
